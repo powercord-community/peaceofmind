@@ -7,17 +7,22 @@ const { resolve } = require('path');
 module.exports = class PeaceOfMind extends Plugin {
   async startPlugin () {
     this.zen = false;
+    this.full = false;
     document.onkeydown = (e) => {
       if (e.ctrlKey && e.altKey && e.key === ']') {
-        this.beginPOM();
+        if (this.full) {
+          this.beginPOM();
+        } else {
+          this.pluginWillUnload();
+        }
       }
       if (e.ctrlKey && e.altKey && e.key === '[') {
         if (this.zen) {
           this.zen = false;
-          this.unloadCSS();
+          powercord.styleManager.themes.get('pom-zen').remove();
         } else {
           this.zen = true;
-          this.loadCSS(resolve(__dirname, 'style.scss'));
+          this.loadCSS('pom-zen', resolve(__dirname, 'style.scss'));
         }
       }
     };
