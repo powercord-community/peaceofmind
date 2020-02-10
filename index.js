@@ -9,14 +9,14 @@ module.exports = class PeaceOfMind extends Plugin {
     this.zen = false;
     this.full = false;
     document.onkeydown = (e) => {
-      if (e.ctrlKey && e.altKey && e.key === ']') {
+      if (e.ctrlKey && e.altKey && e.key === '2') {
         if (this.full) {
           this.beginPOM();
         } else {
           this.pluginWillUnload();
         }
       }
-      if (e.ctrlKey && e.altKey && e.key === '[') {
+      if (e.ctrlKey && e.altKey && e.key === '1') {
         if (this.zen) {
           this.zen = false;
           powercord.styleManager.themes.get('pom-zen').remove();
